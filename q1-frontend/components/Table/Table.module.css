@@ -18,3 +18,23 @@
     flex: 1 1 0px;
     flex-direction: column;
 }
+
+.updateOne {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+
+}
+
+.updateItem {
+    color: black;
+}
+
+.updateDate {
+    font-size: 8px;
+    bottom: 0;
+    color: blue;
+    
+}
+
