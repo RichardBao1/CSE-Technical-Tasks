@@ -5,39 +5,29 @@ interface AlertModalProps {
   useContents: Dispatch<SetStateAction<TableContents>>,
 }
 
-interface AlertModalProps {
-  useContents: Dispatch<SetStateAction<TableContents>>,
-}
-
-interface AlertUpdate {
-  date: string,
-  update: string
-}
-
-interface Alert {
-  alert: string,
-  status: string,
-  updates: AlertUpdate[]
-}
-
-
 export default function AlertModal({useContents}: AlertModalProps) {
   function onSubmitEvent(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // hint: the alert given is at (e.target as any).elements[0].value - ignore typescript being annoying
-    console.log((e.target as any)[0].value);
+    // console.log((e.target as any)[0].value);
 
-    const newContent: Alert = {
-      alert: (e.target as any)[0].value,
-      status: "Woah",
-      updates: []
-    }
+    const val = (e.target as any).elements[0].value
+    if (val === '') {
+      return;
+    } 
 
-    useContents(contents => {
-      contents.rowContents.push(newContent);
-      return contents;
-    });
-
+    useContents( 
+      prevTable => {
+      return {
+        ...prevTable, 
+        rowContents: [
+          ...prevTable.rowContents,
+          {
+            alert: val,
+            status: '',
+            updates: []
+          }
+      ]}
+    })
 
     }
   
